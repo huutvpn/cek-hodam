@@ -3,38 +3,150 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lagu Pop 2000-an</title>
+<title>Cek Khodam Nama Manusia</title>
 
 <style>
 body{
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
     color:#fff;
     text-align:center;
     padding:20px;
 }
-.container{
+.box{
     max-width:600px;
     margin:auto;
-}
-.song{
     background:#111;
-    padding:15px;
-    border-radius:12px;
-    margin-bottom:12px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(0,0,0,.6);
 }
-.song span{
-    text-align:left;
+input{
+    width:90%;
+    padding:12px;
+    border-radius:10px;
+    border:none;
+    margin-bottom:15px;
 }
 button{
-    background:#ff0000;
+    padding:12px 25px;
     border:none;
-    color:#fff;
-    padding:8px 12px;
-    border-radius:8px;
+    border-radius:10px;
+    background:#ff9800;
+    font-weight:bold;
+    cursor:pointer;
+    margin:5px;
+}
+button:hover{
+    background:#ffc107;
+}
+.result{
+    margin-top:20px;
+    background:#222;
+    padding:15px;
+    border-radius:10px;
+}
+footer{
+    margin-top:15px;
+    font-size:12px;
+    opacity:.7;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>🔮 Cek Khodam Nama Manusia</h2>
+    <p>⚠️ Hanya hiburan, jangan dibawa serius 😄</p>
+
+    <input type="text" id="nama" placeholder="Masukkan nama kamu">
+    <br>
+    <button onclick="cek()">Cek Khodam</button>
+    <button onclick="stopSuara()">🔇 Stop Suara</button>
+
+    <div class="result" id="hasil"></div>
+
+    <footer>
+        © 2026 • Cek Khodam Terkunci
+    </footer>
+</div>
+
+<script>
+const khodam = [
+"cakcak","suluh","boncel","pincang","kuraban","gayung bontot","petot",
+"kekenceng","gayung sinduk","kolaci","pariuk","panci nyeuru","maung",
+"singa","simeut","cileuh","pocong","hapuran","ranginang","dapros","opak",
+"kadal","meong","munding","macan tutul","simet","lauk","tempe","tahu",
+"oncom","uyah","bawang","bayawak","aura putih","aura hitam","angksa",
+"bebek","cacing","babi","kutu","tumbila",
+"punya pacar cantik","punya istri solehah","punya suami soleh",
+"penyabar","pemarah","suka bantu orang","ketipu","suka judi",
+"suka maling","cangcut","muka sange","suka usil","pintar",
+"rajin ibadah","suka nyandung","suka main cewe",
+"kamu jelek","kamu ganteng","kamu cantik",
+"suka ngambek","suka morotin uang cewe",
+"playboy","sok ganteng",
+"jomblo ikhlas","punya pacar halu",
+"kaya niat","miskin kuota","dompet transparan",
+"gaji numpang lewat","bahagia tanggal satu",
+"galau tanggal tua","senyum palsu",
+"tertawa karena capek"
+];
+
+// 🔒 HASH NAMA → HASIL TETAP
+function hashNama(nama){
+    let hash = 0;
+    for(let i=0;i<nama.length;i++){
+        hash = nama.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return Math.abs(hash);
+}
+
+let suara;
+
+function cek(){
+    const nama = document.getElementById("nama").value.trim().toLowerCase();
+    if(nama === ""){
+        alert("Masukkan nama dulu 😅");
+        return;
+    }
+
+    const index = hashNama(nama) % khodam.length;
+    const hasil = khodam[index];
+
+    document.getElementById("hasil").innerHTML = `
+        <h3>👤 Nama: ${nama}</h3>
+        <h2>🔮 Khodam Kamu:</h2>
+        <h2 style="color:#ff9800">${hasil}</h2>
+        <p style="font-size:13px;opacity:.7">(pelamar goblog alias peaa)</p>
+    `;
+
+    bacaSuara(nama, hasil);
+}
+
+function bacaSuara(nama, hasil){
+    stopSuara();
+    suara = new SpeechSynthesisUtterance(
+        "Halo " + nama +
+        ". Khodam kamu adalah " + hasil +
+        ""
+    );
+    suara.lang = "id-ID";
+    suara.rate = 1;
+    suara.pitch = 1;
+    speechSynthesis.speak(suara);
+}
+
+function stopSuara(){
+    if(speechSynthesis.speaking){
+        speechSynthesis.cancel();
+    }
+}
+</script>
+
+</body>
+</html>    border-radius:8px;
     font-weight:bold;
     cursor:pointer;
 }
