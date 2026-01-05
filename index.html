@@ -14,32 +14,32 @@ body{
     padding:20px;
 }
 .container{
-    max-width:900px;
+    max-width:600px;
     margin:auto;
 }
-h1{
-    margin-bottom:5px;
-}
-.playlist{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:15px;
-    margin-top:20px;
-}
-.card{
+.song{
     background:#111;
+    padding:15px;
     border-radius:12px;
-    padding:10px;
-    box-shadow:0 0 15px rgba(0,0,0,.5);
+    margin-bottom:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
-.card h3{
-    font-size:16px;
-    margin:8px 0;
+.song span{
+    text-align:left;
 }
-iframe{
-    width:100%;
-    height:200px;
-    border-radius:10px;
+button{
+    background:#ff0000;
+    border:none;
+    color:#fff;
+    padding:8px 12px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+button:hover{
+    background:#ff4d4d;
 }
 footer{
     margin-top:20px;
@@ -51,68 +51,55 @@ footer{
 
 <body>
 <div class="container">
-    <h1>🎶 Lagu Pop Tahun 2000-an</h1>
-    <p>Kumpulan lagu nostalgia (putar langsung)</p>
+    <h1>🎵 Lagu Pop Tahun 2000-an</h1>
+    <p>Putar langsung di YouTube Music</p>
 
-    <div class="playlist">
+    <div class="song">
+        <span>Peterpan – Mungkin Nanti</span>
+        <button onclick="openMusic('Peterpan Mungkin Nanti')">▶ Play</button>
+    </div>
 
-        <!-- INDONESIA -->
-        <div class="card">
-            <h3>Peterpan – Mungkin Nanti</h3>
-            <iframe src="https://www.youtube.com/embed/0G5dGgV8c6k" allowfullscreen></iframe>
-        </div>
+    <div class="song">
+        <span>Dewa 19 – Separuh Nafas</span>
+        <button onclick="openMusic('Dewa 19 Separuh Nafas')">▶ Play</button>
+    </div>
 
-        <div class="card">
-            <h3>Dewa 19 – Separuh Nafas</h3>
-            <iframe src="https://www.youtube.com/embed/YQF4Z6nY9tE" allowfullscreen></iframe>
-        </div>
+    <div class="song">
+        <span>Ungu – Demi Waktu</span>
+        <button onclick="openMusic('Ungu Demi Waktu')">▶ Play</button>
+    </div>
 
-        <div class="card">
-            <h3>Ungu – Demi Waktu</h3>
-            <iframe src="https://www.youtube.com/embed/7eF3c8q0VhE" allowfullscreen></iframe>
-        </div>
+    <div class="song">
+        <span>Sheila On 7 – Dan</span>
+        <button onclick="openMusic('Sheila On 7 Dan')">▶ Play</button>
+    </div>
 
-        <div class="card">
-            <h3>Rossa – Tegar</h3>
-            <iframe src="https://www.youtube.com/embed/4R8F6m9v7nE" allowfullscreen></iframe>
-        </div>
+    <div class="song">
+        <span>Rossa – Tegar</span>
+        <button onclick="openMusic('Rossa Tegar')">▶ Play</button>
+    </div>
 
-        <div class="card">
-            <h3>Sheila On 7 – Dan</h3>
-            <iframe src="https://www.youtube.com/embed/5n8Qh7kE9mM" allowfullscreen></iframe>
-        </div>
+    <div class="song">
+        <span>Westlife – My Love</span>
+        <button onclick="openMusic('Westlife My Love')">▶ Play</button>
+    </div>
 
-        <!-- BARAT -->
-        <div class="card">
-            <h3>Westlife – My Love</h3>
-            <iframe src="https://www.youtube.com/embed/ulOb9gIGGd0" allowfullscreen></iframe>
-        </div>
-
-        <div class="card">
-            <h3>Backstreet Boys – Shape of My Heart</h3>
-            <iframe src="https://www.youtube.com/embed/OT5msu-dap8" allowfullscreen></iframe>
-        </div>
-
-        <div class="card">
-            <h3>Britney Spears – Oops!... I Did It Again</h3>
-            <iframe src="https://www.youtube.com/embed/CduA0TULnow" allowfullscreen></iframe>
-        </div>
-
-        <div class="card">
-            <h3>Avril Lavigne – Complicated</h3>
-            <iframe src="https://www.youtube.com/embed/5NPBIwQyPWE" allowfullscreen></iframe>
-        </div>
-
-        <div class="card">
-            <h3>Linkin Park – In The End</h3>
-            <iframe src="https://www.youtube.com/embed/eVTXPUF4Oz4" allowfullscreen></iframe>
-        </div>
-
+    <div class="song">
+        <span>Linkin Park – In The End</span>
+        <button onclick="openMusic('Linkin Park In The End')">▶ Play</button>
     </div>
 
     <footer>
-        © 2026 • Playlist Pop 2000-an (YouTube Embed)
+        © 2026 • Shortcut YouTube Music
     </footer>
 </div>
+
+<script>
+function openMusic(query){
+    const url = "https://music.youtube.com/search?q=" + encodeURIComponent(query);
+    window.open(url, "_blank");
+}
+</script>
+
 </body>
 </html>
